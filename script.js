@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- YOUR GOOGLE APPS SCRIPT URL ---
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmZJEQkqYJG_9zn1T0Jla31W7GxgyVIjnoq6O8A41hqBk7LGcI9JsV7RBy6xLFnYcj/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx_buRaX1EyooQkeSDkHdqafCpBhu4IJhSGCflZPV-pEOY35VMJam-VDjLUJqeHMPTA/exec";
 
     // --- YOUR NEW ADMIN CREDENTIALS ARE SET HERE ---
     const ADMIN_EMAIL = "libraryparijat@gmail.com";
