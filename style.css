@@ -32,7 +32,8 @@ body {
 }
 
 /* --- LOGIN PAGE --- */
-#login-page {
+/* THIS IS THE KEY FIX: Styles only apply when login page is ACTIVE */
+#login-page.active {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -210,6 +211,7 @@ main {
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     margin-bottom: 2rem;
+    overflow-x: auto; /* Allows horizontal scrolling on medium screens */
 }
 
 h3 {
@@ -222,11 +224,12 @@ form {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    align-items: center;
 }
 
 form input, form select {
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
     padding: 0.7rem;
     border: 1px solid var(--light-gray);
     border-radius: 5px;
@@ -282,6 +285,7 @@ tbody tr:hover {
     cursor: pointer;
     color: var(--white-color);
     margin-right: 5px;
+    margin-bottom: 5px;
 }
 .edit-btn { background-color: var(--accent-color); }
 .delete-btn { background-color: var(--danger-color); }
@@ -294,6 +298,7 @@ tbody tr:hover {
     border-radius: 12px;
     font-weight: 600;
     font-size: 0.8rem;
+    display: inline-block;
 }
 .status-issued {
     background-color: #fff3cd;
@@ -302,6 +307,7 @@ tbody tr:hover {
     border-radius: 12px;
     font-weight: 600;
     font-size: 0.8rem;
+    display: inline-block;
 }
 .status-returned {
     background-color: #e2e3e5;
@@ -310,6 +316,7 @@ tbody tr:hover {
     border-radius: 12px;
     font-weight: 600;
     font-size: 0.8rem;
+    display: inline-block;
 }
 
 /* Modal */
@@ -384,7 +391,7 @@ tbody tr:hover {
     100% { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -396,8 +403,46 @@ tbody tr:hover {
     }
     form {
         flex-direction: column;
+        align-items: stretch;
     }
     .tabs {
         flex-direction: column;
+    }
+}
+
+/* IMPROVED: Better table view on very small screens */
+@media (max-width: 600px) {
+    .table-container {
+        overflow-x: hidden; /* Hide horizontal scroll on smallest screens */
+    }
+    
+    thead {
+        display: none; /* Hide the header row */
+    }
+    tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--light-gray);
+        border-radius: 5px;
+        padding: 1rem;
+    }
+    td {
+        display: block;
+        text-align: right; /* Align cell content to the right */
+        padding-left: 50%; /* Create space for the label */
+        position: relative;
+        border-bottom: none;
+    }
+    td:before {
+        content: attr(data-label); /* Use data-label for the header */
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        text-align: left;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    td:last-child {
+        text-align: center; /* Center the buttons */
     }
 }
