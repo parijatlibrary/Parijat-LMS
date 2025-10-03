@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- YOUR NEW URL HAS BEEN ADDED HERE ---
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHDjr9d_D2QMp5qUq9g6LOJ3NGV9001JjKStMrJZQEgQm44liN90s9Y9lxHMub7GMG/exec";
+    // --- YOUR URL IS CONFIRMED HERE ---
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8NBvLArptFYdWsrFmeGO5MNTlJWGMphIXfYq-CKwLl8sfEh9fQNgnSqDXFNUzPkXs/exec";
 
     const ADMIN_EMAIL = "libraryparijat@gmail.com";
     const ADMIN_PASSWORD = "Adminp@2025";
@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     logoutBtn.addEventListener('click', () => { sessionStorage.removeItem('loggedIn'); location.reload(); });
     
-    // --- THIS IS THE FINAL, WORKING FUNCTION ---
     addBookForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const title = document.getElementById('book-title').value;
@@ -124,4 +123,3 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('loggedIn') === 'true') { loginPage.classList.remove('active'); dashboardPage.classList.add('active'); loadAllData(); } else { loginPage.classList.add('active'); dashboardPage.classList.remove('active'); }
 });
 function openTab(evt, tabName) { let i, tabcontent, tablinks; tabcontent = document.getElementsByClassName("tab-content"); for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); } tablinks = document.getElementsByClassName("tab-link"); for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); } document.getElementById(tabName).classList.add("active"); evt.currentTarget.classList.add("active");}
-
