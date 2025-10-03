@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- YOUR GOOGLE APPS SCRIPT URL IS NOW ADDED ---
+    // --- YOUR GOOGLE APPS SCRIPT URL ---
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmZJEQkqYJG_9zn1T0Jla31W7GxgyVIjnoq6O8A41hqBk7LGcI9JsV7RBy6xLFnYcj/exec";
 
-    // --- Admin Credentials (change these if you want) ---
+    // --- YOUR NEW ADMIN CREDENTIALS ARE SET HERE ---
     const ADMIN_EMAIL = "libraryparijat@gmail.com";
     const ADMIN_PASSWORD = "Adminp@2025";
 
@@ -100,19 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- RENDER FUNCTIONS ---
+    // --- RENDER FUNCTIONS (IMPROVED FOR MOBILE) ---
     const renderBooks = (booksToRender) => {
         booksTableBody.innerHTML = '';
         booksToRender.forEach(book => {
             const statusClass = book.Status === 'Available' ? 'status-available' : 'status-issued';
             const row = `
                 <tr>
-                    <td>${book.BookID}</td>
-                    <td>${book.Title}</td>
-                    <td>${book.Author}</td>
-                    <td>${book.Genre}</td>
-                    <td><span class="${statusClass}">${book.Status}</span></td>
-                    <td>
+                    <td data-label="Book ID">${book.BookID}</td>
+                    <td data-label="Title">${book.Title}</td>
+                    <td data-label="Author">${book.Author}</td>
+                    <td data-label="Genre">${book.Genre}</td>
+                    <td data-label="Status"><span class="${statusClass}">${book.Status}</span></td>
+                    <td data-label="Actions">
                         <button class="action-btn edit-btn" data-id="${book.BookID}" data-type="book">Edit</button>
                         <button class="action-btn delete-btn" data-id="${book.BookID}" data-type="book">Delete</button>
                     </td>
@@ -127,10 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
         membersToRender.forEach(member => {
             const row = `
                 <tr>
-                    <td>${member.MemberID}</td>
-                    <td>${member.Name}</td>
-                    <td>${member.Contact}</td>
-                    <td>
+                    <td data-label="Member ID">${member.MemberID}</td>
+                    <td data-label="Name">${member.Name}</td>
+                    <td data-label="Contact">${member.Contact}</td>
+                    <td data-label="Actions">
                         <button class="action-btn edit-btn" data-id="${member.MemberID}" data-type="member">Edit</button>
                         <button class="action-btn delete-btn" data-id="${member.MemberID}" data-type="member">Delete</button>
                     </td>
@@ -147,13 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const statusClass = isReturned ? 'status-returned' : 'status-issued';
             const row = `
                 <tr>
-                    <td>${item.IssueID}</td>
-                    <td>${item.BookTitle}</td>
-                    <td>${item.MemberName}</td>
-                    <td>${item.IssueDate}</td>
-                    <td>${item.DueDate}</td>
-                    <td><span class="${statusClass}">${item.Status}</span></td>
-                    <td>
+                    <td data-label="Issue ID">${item.IssueID}</td>
+                    <td data-label="Book Title">${item.BookTitle}</td>
+                    <td data-label="Member Name">${item.MemberName}</td>
+                    <td data-label="Issue Date">${item.IssueDate}</td>
+                    <td data-label="Due Date">${item.DueDate}</td>
+                    <td data-label="Status"><span class="${statusClass}">${item.Status}</span></td>
+                    <td data-label="Action">
                         ${!isReturned ? `<button class="action-btn return-btn" data-issue-id="${item.IssueID}" data-book-id="${item.BookID}">Return</button>` : 'Returned'}
                     </td>
                 </tr>
@@ -197,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- EVENT LISTENERS ---
     
-    // Login/Logout
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.getElementById('admin-email').value;
@@ -214,12 +213,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     logoutBtn.addEventListener('click', () => {
         sessionStorage.removeItem('loggedIn');
+        // This makes sure the classes are reset correctly before reloading
         dashboardPage.classList.remove('active');
         loginPage.classList.add('active');
-        location.reload(); // To clear all data
+        location.reload();
     });
     
-    // --- THIS FUNCTION IS NOW UPDATED ---
     addBookForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const title = document.getElementById('book-title').value;
@@ -268,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Table Actions (Edit, Delete, Return)
     document.querySelector('main').addEventListener('click', async (e) => {
         const target = e.target;
         
@@ -305,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Modal Logic
     const openEditModal = (type, id) => {
         modal.style.display = 'block';
         editForm.innerHTML = '';
@@ -369,7 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Search Functionality
     const filterTable = (input, data, renderFn, keys) => {
         const searchTerm = input.value.toLowerCase();
         const filteredData = data.filter(item => {
@@ -391,10 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAllData();
     } else {
         loginPage.classList.add('active');
+        dashboardPage.classList.remove('active');
     }
 });
 
-// --- Tab Switching Logic ---
 function openTab(evt, tabName) {
     let i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
