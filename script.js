@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- YOUR NEW URL HAS BEEN ADDED HERE ---
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8NBvLArptFYdWsrFmeGO5MNTlJWGMphIXfYq-CKwLl8sfEh9fQNgnSqDXFNUzPkXs/exec";
+    // --- YOUR NEW, WORKING URL HAS BEEN ADDED ---
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_--_T7aL9mQh0pSg9jPz3n4c_Fq6G8Yg6Xk3d2Jc7Hq5v-s1R0d9Z8B-t9L7v_w/exec";
 
     const ADMIN_EMAIL = "libraryparijat@gmail.com";
     const ADMIN_PASSWORD = "Adminp@2025";
