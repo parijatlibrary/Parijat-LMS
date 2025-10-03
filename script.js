@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- YOUR URL IS CONFIRMED HERE ---
+    // --- YOUR NEW URL HAS BEEN ADDED HERE ---
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8NBvLArptFYdWsrFmeGO5MNTlJWGMphIXfYq-CKwLl8sfEh9fQNgnSqDXFNUzPkXs/exec";
 
     const ADMIN_EMAIL = "libraryparijat@gmail.com";
